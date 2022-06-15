@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="小罗"><meta name="copyright" content="小罗"><meta name="generator" content="Hexo 5.4.2"><meta name="theme" content="hexo-theme-yun"><title>Arduino的学习 | 小罗的网站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.2.4/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/mini.global.js"></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"xiaoluostudy.top","root":"/","title":["小","罗","的","杂","货","店"],"version":"1.8.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://el-bot-api.vercel.app/api/words/young"},"fireworks":{"colors":null},"waline":{"config":{"enable":true,"serverURL":"https://blog-comment-aqs8kh5ud-joemax01.vercel.app","comment":false,"avatar":"retro","el":"#waline","count":10,"meta":["nick","mail"],"pageSize":10,"lang":"zh-CN"},"cdn":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"html.dark"},"vendors":{"darken":"https://cdn.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="小罗的网站" type="application/atom+xml"><script src="//at.alicdn.com/t/font_2641442_dg8b6ohd9el.js" async></script><script data-ad-client="ca-pub-2245427233262012" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="最近粗错的学习了Arduino的使用ヾ(≧▽≦*)o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arduino的学习">
+<meta property="og:url" content="http://xiaoluostudy.top/posts/1022efac.html">
+<meta property="og:site_name" content="小罗的网站">
+<meta property="og:description" content="最近粗错的学习了Arduino的使用ヾ(≧▽≦*)o">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://xiaoluostudy.top/posts/1022efac/20210712210412.png">
+<meta property="og:image" content="http://xiaoluostudy.top/posts/1022efac/20210712210607.png">
+<meta property="og:image" content="http://xiaoluostudy.top/posts/1022efac/20210705230129.png">
+<meta property="og:image" content="http://xiaoluostudy.top/posts/1022efac/20210705232736.png">
+<meta property="og:image" content="http://xiaoluostudy.top/posts/1022efac/20210705233302.png">
+<meta property="og:image" content="http://xiaoluostudy.top/posts/1022efac/20210705234420.png">
+<meta property="og:image" content="http://xiaoluostudy.top/posts/1022efac/20210706153839.png">
+<meta property="article:published_time" content="2021-07-12T12:52:21.000Z">
+<meta property="article:modified_time" content="2022-06-15T16:51:12.727Z">
+<meta property="article:author" content="小罗">
+<meta property="article:tag" content="Arduino">
+<meta property="article:tag" content="制作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://xiaoluostudy.top/posts/1022efac/20210712210412.png"><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="小罗"><img width="96" loading="lazy" src="/images/avatar.png" alt="小罗"><span class="site-author-status" title="学习使我快乐:D">🙃</span></a><div class="site-author-name"><a href="/about/">小罗</a></div><span class="site-name">小罗的网站</span><sub class="site-subtitle"></sub><div class="site-desciption">一个分享的地方</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="我的主页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">5</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">1</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item"><a href="/albums/" title="相册"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></span><span class="site-state-item-count">相册</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-clipboard-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/joemax01" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/49435965" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:2252030510@qq.com" title="E-Mail" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.</span> <span class="toc-text">软件下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%B6%E4%BB%96%E7%9A%84%E5%BC%80%E5%8F%91%E6%9D%BF"><span class="toc-number">2.</span> <span class="toc-text">添加其他的开发板</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E6%96%87%E4%BB%B6%E8%AE%B2%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">初始文件讲解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Arduino%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">Arduino函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%84%9A%E5%AE%9A%E4%B9%89"><span class="toc-number">4.1.</span> <span class="toc-text">引脚定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%84%9A%E9%AB%98%E4%BD%8E%E7%94%B5%E5%B9%B3%E8%AE%BE%E5%AE%9A"><span class="toc-number">4.2.</span> <span class="toc-text">引脚高低电平设定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%84%9A%E9%AB%98%E4%BD%8E%E7%94%B5%E5%B9%B3%E8%AF%BB%E5%8F%96"><span class="toc-number">4.3.</span> <span class="toc-text">引脚高低电平读取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E6%97%B6%E5%87%BD%E6%95%B0"><span class="toc-number">4.4.</span> <span class="toc-text">延时函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B2%E5%8F%A3%E6%B3%A2%E7%89%B9%E7%8E%87%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.5.</span> <span class="toc-text">串口波特率设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B2%E5%8F%A3%E4%BF%A1%E6%81%AF%E8%BE%93%E5%87%BA"><span class="toc-number">4.6.</span> <span class="toc-text">串口信息输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PWM%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.7.</span> <span class="toc-text">PWM实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E5%90%8C%E7%9B%AE%E5%BD%95%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-number">4.8.</span> <span class="toc-text">引用同目录头文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%BA%E6%9C%8D%E7%94%B5%E6%9C%BA"><span class="toc-number">5.</span> <span class="toc-text">伺服电机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#74HC595"><span class="toc-number">6.</span> <span class="toc-text">74HC595</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">6.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84"><span class="toc-number">6.2.</span> <span class="toc-text">结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%8F%E4%B8%AA%E5%BC%95%E8%84%9A%E5%8A%9F%E8%83%BD"><span class="toc-number">6.3.</span> <span class="toc-text">每个引脚功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E9%A1%BA%E5%BA%8F"><span class="toc-number">6.4.</span> <span class="toc-text">编码顺序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A5%E8%BF%9B%E7%94%B5%E6%9C%BA"><span class="toc-number">7.</span> <span class="toc-text">步进电机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E8%BF%9B%E7%94%B5%E6%9C%BA%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84"><span class="toc-number">7.1.</span> <span class="toc-text">步进电机内部结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-8LED"><span class="toc-number">8.</span> <span class="toc-text">8*8LED</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A2%E5%A4%96%E6%A8%A1%E5%9D%97"><span class="toc-number">9.</span> <span class="toc-text">红外模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ATtiny85"><span class="toc-number">10.</span> <span class="toc-text">ATtiny85</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84-1"><span class="toc-number">10.1.</span> <span class="toc-text">结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ws2812b"><span class="toc-number">11.</span> <span class="toc-text">ws2812b</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="http://xiaoluostudy.top/posts/1022efac.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="小罗"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="小罗的网站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Arduino的学习</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2021-07-12 20:52:21" itemprop="dateCreated datePublished" datetime="2021-07-12T20:52:21+08:00">2021-07-12</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2022-06-16 00:51:12" itemprop="dateModified" datetime="2022-06-16T00:51:12+08:00">2022-06-16</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">1.1k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">4m</span></span></span><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E6%95%99%E7%A8%8B/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">教程</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/Arduino/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">Arduino</span></a><a class="tag-item" href="/tags/%E5%88%B6%E4%BD%9C/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">制作</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><p>最近粗错的学习了Arduino的使用ヾ(≧▽≦*)o</p>
+<span id="more"></span>
+
+<h1 id="软件下载"><a href="#软件下载" class="headerlink" title="软件下载"></a>软件下载</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.arduino.cc/en/software">https://www.arduino.cc/en/software</a></p>
+</blockquote>
+<p>下载完后在工具中选择对应的开发板型号和端口</p>
+<h1 id="添加其他的开发板"><a href="#添加其他的开发板" class="headerlink" title="添加其他的开发板"></a>添加其他的开发板</h1><p>这里使用esp8266mini d1开发板</p>
+<blockquote>
+<p>在文件-首选项-附加开发板管理器网址里填写  <a target="_blank" rel="noopener" href="http://arduino.esp8266.com/stable/package_esp8266com_index.json">http://arduino.esp8266.com/stable/package_esp8266com_index.json</a></p>
+</blockquote>
+<blockquote>
+<p>之后在工具-开发板-开发板管理器搜索esp8266安装</p>
+</blockquote>
+<p><img src="/posts/1022efac/20210712210412.png" loading="lazy"></p>
+<p><img src="/posts/1022efac/20210712210607.png" alt="20210712210607" loading="lazy"></p>
+<h1 id="初始文件讲解"><a href="#初始文件讲解" class="headerlink" title="初始文件讲解"></a>初始文件讲解</h1><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">void setup() &#123;
+  &#x2F;&#x2F; 这里面放的是刚开机会运行的东西,比如串口通信频率
+
+&#125;
+
+void loop() &#123;
+  &#x2F;&#x2F; 这里放的函数将会一直循环,相当于while
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="Arduino函数"><a href="#Arduino函数" class="headerlink" title="Arduino函数"></a>Arduino函数</h1><h2 id="引脚定义"><a href="#引脚定义" class="headerlink" title="引脚定义"></a>引脚定义</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">pinMode(LED_BUILTIN, OUTPUT)   &#x2F;&#x2F;定义输出引脚
+pinMode(LED_BUILTIN, INPUT)   &#x2F;&#x2F;定义输入引脚<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="引脚高低电平设定"><a href="#引脚高低电平设定" class="headerlink" title="引脚高低电平设定"></a>引脚高低电平设定</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">digitalWrite(LED_BUILTIN, LOW);  &#x2F;&#x2F;高低电平设置<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="引脚高低电平读取"><a href="#引脚高低电平读取" class="headerlink" title="引脚高低电平读取"></a>引脚高低电平读取</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">digtialRead</span><span class="token punctuation">(</span>pushButton<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//引脚电平读取  </span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="延时函数"><a href="#延时函数" class="headerlink" title="延时函数"></a>延时函数</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">delay(1000);  &#x2F;&#x2F;延时1000ms<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="串口波特率设置"><a href="#串口波特率设置" class="headerlink" title="串口波特率设置"></a>串口波特率设置</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">Serial.begin(9600); &#x2F;&#x2F;波特率<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="串口信息输出"><a href="#串口信息输出" class="headerlink" title="串口信息输出"></a>串口信息输出</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c">Serial<span class="token punctuation">.</span><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//输出字符串   没有格式化</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="PWM实现"><a href="#PWM实现" class="headerlink" title="PWM实现"></a>PWM实现</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">sensorRead&#x3D; analogRead(PIN);&#x2F;&#x2F; 数据信号转模拟信号
+newdata&#x3D;map(sensorRead,0,1023,0,100);&#x2F;&#x2F;数据映射  0~1023是sensorRead的值，0~100是映射的值     1023-&gt;100
+analogWrite(PIN,newdata);  &#x2F;&#x2F;PWM<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="引用同目录头文件"><a href="#引用同目录头文件" class="headerlink" title="引用同目录头文件"></a>引用同目录头文件</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &quot;...&quot;   &#x2F;&#x2F;相比与#include &lt;...&gt;  ，&lt;&gt;里面引用的头文件是Arduino根目录下的libraries里的头文件<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h1 id="伺服电机"><a href="#伺服电机" class="headerlink" title="伺服电机"></a>伺服电机</h1><blockquote>
+<p>棕色线GND   橘色信号线    红色VCC</p>
+</blockquote>
+<blockquote>
+<p>需要包含头文件  Servo.h</p>
+</blockquote>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &lt;Servo.h&gt;
+Servo myservo  &#x2F;&#x2F;定义电机的名字（结构体）
+myervo.attach(PIN); &#x2F;&#x2F;定义控制电机的引脚(信号线)
+myservo.write(90);   &#x2F;&#x2F;电机转动90度<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="74HC595"><a href="#74HC595" class="headerlink" title="74HC595"></a>74HC595</h1><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>引脚扩展   3个引脚扩展成8个</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="/posts/1022efac/20210705230129.png" alt="20210705230129" loading="lazy"></p>
+<h2 id="每个引脚功能"><a href="#每个引脚功能" class="headerlink" title="每个引脚功能"></a>每个引脚功能</h2><p>“资料”引脚DS： 编写引脚数据</p>
+<p>“活塞”引脚SH：传输每个引脚的数据</p>
+<p>“大平台”引脚ST：控制数据上传到每个引脚</p>
+<h2 id="编码顺序"><a href="#编码顺序" class="headerlink" title="编码顺序"></a>编码顺序</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;&#x2F;定义3个“资料PIN1”“活塞PIN2”“大平台PIN3”引脚为输出
+pinMode(PIN1, OUTPUT)   &#x2F;&#x2F;定义输出引脚
+pinMode(PIN2, OUTPUT)   &#x2F;&#x2F;定义输出引脚
+pinMode(PIN3, OUTPUT)   &#x2F;&#x2F;定义输出引脚
+unsigned char data[8]&#x3D;&#123;1,1,1,1,1,1,1,1&#125;;
+digitalWrite(PIN3，LOW);   &#x2F;&#x2F;将“大平台”设置为低，准备接收数据
+for(int i&#x3D;0;i&lt;8;i++)
+&#123;
+	digitalWrite(PIN2,LOW);     &#x2F;&#x2F;收起“活塞” 设置为低，准备传输 数据
+	digitalWrite(PIN1,data[i]);	&#x2F;&#x2F;传入数据
+        digitalWrite(PIN2,HIGH);     &#x2F;&#x2F;推动“活塞” 设置为高，传输数据
+        if(i&#x3D;&#x3D;8) digitalWrite(PIN3，HIGH);   &#x2F;&#x2F;将“大平台”设置为高，接收数据
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="步进电机"><a href="#步进电机" class="headerlink" title="步进电机"></a>步进电机</h1><blockquote>
+<p>采用模块：ULN2003A       那边高电平，对称的位置的接地</p>
+</blockquote>
+<p><img src="/posts/1022efac/20210705232736.png" alt="20210705232736" loading="lazy"></p>
+<h2 id="步进电机内部结构"><a href="#步进电机内部结构" class="headerlink" title="步进电机内部结构"></a>步进电机内部结构</h2><p><img src="/posts/1022efac/20210705233302.png" alt="20210705233302" loading="lazy"></p>
+<blockquote>
+<p>启动方法：四根线循环接地</p>
+</blockquote>
+<h1 id="8-8LED"><a href="#8-8LED" class="headerlink" title="8*8LED"></a>8*8LED</h1><blockquote>
+<p>点亮一个灯：L4高电平，C1低电平</p>
+</blockquote>
+<p><img src="/posts/1022efac/20210705234420.png" alt="20210705234420" loading="lazy"></p>
+<h1 id="红外模块"><a href="#红外模块" class="headerlink" title="红外模块"></a>红外模块</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/Arduino-IRremote/Arduino-IRremote">https://github.com/Arduino-IRremote/Arduino-IRremote</a></p>
+</blockquote>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;IRremote.h></span>	<span class="token comment">//包含头文件</span></span>
+IRrecv <span class="token function">irrecv</span><span class="token punctuation">(</span>PIN<span class="token punctuation">)</span><span class="token punctuation">;</span>			<span class="token comment">//设置红外接收引脚</span>
+decode_results results<span class="token punctuation">;</span>		<span class="token comment">//接收红外信号值</span>
+irrecv<span class="token punctuation">.</span><span class="token function">enaleIRIn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>		<span class="token comment">//开启红外接收</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>irrecv<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>results<span class="token punctuation">)</span><span class="token punctuation">)</span>	<span class="token comment">//判断是否接收到红外信号</span>
+<span class="token punctuation">&#123;</span>
+    Serial<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>results<span class="token punctuation">.</span>value<span class="token punctuation">,</span>HEX<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">//将接收数据results.value以16进制输出</span>
+    irrecv<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">//继续接收</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="ATtiny85"><a href="#ATtiny85" class="headerlink" title="ATtiny85"></a>ATtiny85</h1><h2 id="结构-1"><a href="#结构-1" class="headerlink" title="结构"></a>结构</h2><p><img src="/posts/1022efac/20210706153839.png" alt="20210706153839" loading="lazy"></p>
+<blockquote>
+<p>需要Arduino作为烧录器烧录</p>
+<p>例程选择ArduinoISP,烧录到Arduino</p>
+<p>工具里烧录器改成Arduino as ISP，开发板选择ATtiny85</p>
+<p>接线：将Reset，Pin2，Pin1，Pin0接入Arduino</p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json">https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json</a></p>
+</blockquote>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">analogWrite</span><span class="token punctuation">(</span>PIN<span class="token punctuation">,</span>value<span class="token punctuation">)</span>；<span class="token comment">//PWM控制灯亮度</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="ws2812b"><a href="#ws2812b" class="headerlink" title="ws2812b"></a>ws2812b</h1><pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &lt;Adafruit_NeoPixel.h&gt;
+Adafruit_NeoPixel strip(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800); &#x2F;&#x2F;定义灯的参数
+strip.begin();&#x2F;&#x2F;初始化
+strip.show();    &#x2F;&#x2F;每次setPixelColor设置完，都要执行这个程序
+
+&#x2F;&#x2F;设置颜色方法1
+strip.setPixelColor(n, red, green, blue, white);&#x2F;&#x2F;n:位置，white:亮度0~255
+strip.show();
+&#x2F;&#x2F;设置颜色方法2
+uint32_t magenta &#x3D; strip.Color(red, green, blue);  &#x2F;&#x2F;RGB颜色转换
+strip.setPixelColor(n,magenta);
+strip.show();
+
+&#x2F;&#x2F;使用getPixelColor()方法可以查询某像素的颜色。
+uint32_t color &#x3D; strip.getPixelColor(11);&#x2F;&#x2F;该方法返回32位颜色值。
+
+uint16_t n &#x3D; strip.numPixels();&#x2F;&#x2F;获取LED数量
+
+&#x2F;&#x2F;设置整体亮度,setBrightness()一般只在setup()中调用
+strip.setBrightness(64);&#x2F;&#x2F;彩带中LED的整体亮度可以用setBrightness()进行调整，该方法只需一个参数，0为关闭，255为最大亮度。 例如，将彩带设置为1&#x2F;4亮度：
+strip.show();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">我很可爱，请给我钱</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://gitee.com/JoeMax/my-stm32-picture-resource/raw/master/img/20210622180827.jpg"><img loading="lazy" src="https://gitee.com/JoeMax/my-stm32-picture-resource/raw/master/img/20210622180827.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-alipay-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://gitee.com/JoeMax/my-stm32-picture-resource/raw/master/img/20210622180927.jpg"><img loading="lazy" src="https://gitee.com/JoeMax/my-stm32-picture-resource/raw/master/img/20210622180927.jpg" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://gitee.com/JoeMax/my-stm32-picture-resource/raw/master/img/20210622180946.jpg"><img loading="lazy" src="https://gitee.com/JoeMax/my-stm32-picture-resource/raw/master/img/20210622180946.jpg" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-pay-line"></use></svg></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>小罗</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://xiaoluostudy.top/posts/1022efac.html" title="Arduino的学习">http://xiaoluostudy.top/posts/1022efac.html</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/32e64cde.html" rel="prev" title="美化你的博客文章"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">美化你的博客文章</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/31e5cf3f.html" rel="next" title="网站的由来（制作）"><span class="post-nav-text">网站的由来（制作）</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div id="waline"></div><script>window.CONFIG.waline.config.path = "/posts/1022efac.html"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2021 – 2022 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 小罗</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.2</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.8.11</span></div><div class="live-time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2021-06-01T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = ` ${passDay} 天 ${passHour} 小时 ${passMinute} 分 ${passSecond} 秒`;
+}
+blog_live_time();
+</script></div><div class="footer-custom-text">欢迎光临啊</div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script></div><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body></html>
